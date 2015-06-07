@@ -2,6 +2,8 @@
 #define pGPMDAT (volatile unsigned long*) 0x7f008824
 #define asmpGPMCON 0x7f008820
 #define asmpGPMDAT 0x7f008824
+int mmu_init(){
+	}
 int led_on_asm(){
 	  __asm__(
         "ldr r1,=0x1111\n"
