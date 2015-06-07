@@ -19,7 +19,7 @@ int set_ttb(){
 	  unsigned long vaddr,paddr;
 	  vaddr = 0xA0000000;
 	  paddr = 0x7f000000;
-	  *(ttb + vaddr>>20) = (paddr & 0xfff00000)|TTB_DES;
+	  *(ttb + (vaddr>>20)) = (paddr & 0xfff00000)|TTB_DES;
 	  vaddr = 0x50000000;
     paddr = 0x50000000;
     while (vaddr < 0x54000000)
@@ -40,7 +40,7 @@ int mmu_init(){
     "mcr p15,0,r0,c3,c0,0\n"
     /*enable MMU*/
     "mrc p15,0,r0,c1,c0,0\n"
-    "orr r0,r0,#0x1"
+    "orr r0,r0,#0x1\n"
     "mcr p15,0,r0,c1,c0,0\n" 
     :
     :
