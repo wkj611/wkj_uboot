@@ -4,7 +4,13 @@
 #define asmpGPMDAT 0x7f008824
 int mmu_init(){
     __asm__(
-    
+    "ldr r0,=0x50000000\n"
+    "mcr p15,0,r0,c2,c0,0\n"
+    "mvn r0,#0x0\n"
+    "mcr p15,0,r0,c3,c0,0\n"
+    "mrc p15,0,r0,c1,c0,0\n"
+    "orr r0,r0,#0x1"
+    "mcr p15,0,r0,c1,c0,0\n" 
     :
     :
     );	
