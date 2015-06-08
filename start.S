@@ -171,3 +171,4 @@ led_on:
         ldr r1,=0x5/*0b1010*/
         str r1,[r0]
         @mov pc,lr
+

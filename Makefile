@@ -1,4 +1,4 @@
-all:start.o mem.o main.o
+all:start.o mem.o main.o mmu.o led.o
 	arm-linux-ld -Twboot.lds -o wboot.elf $^
 	arm-linux-objcopy -O binary wboot.elf wboot.bin
 %.o:%.S
