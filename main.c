@@ -3,6 +3,9 @@ int wboot_main(){
 	  mmu_init();
 	  #endif
 	  led_init();
+	  button_init();
+	  irq_init();
+	  
 	  led_twk();
 	  return 0;
 }

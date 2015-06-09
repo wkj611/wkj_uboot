@@ -1,0 +1,10 @@
+#define GPNCON (volatile unsigned long *)0x7f008830
+#define GPN0 1<<1
+#define GPN1 1<<3
+#define GPN2 1<<5
+#define GPN3 1<<7
+#define GPN4 1<<9
+#define GPN5 1<<11
+int button_init(){
+	  *GPNCON = GPN0|GPN1|GPN2|GPN3|GPN4|GPN5;
+}

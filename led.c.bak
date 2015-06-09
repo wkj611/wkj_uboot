@@ -23,7 +23,7 @@ int led_on_asm(){
 	  );
         return 0;
 }
-int led_on(){
+int led_twk(){
 	  int i;
 	  led_on_asm();
 	  for(i=0;i<5330000/2;i++){}

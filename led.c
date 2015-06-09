@@ -23,6 +23,14 @@ int led_on_asm(){
 	  );
         return 0;
 }
+int led_light(){
+	  *(ppGPMDAT)=0x0;
+	  return 0;
+	  }
+int led_off(){
+	  *(ppGPMDAT)=0xf;
+	  return 0;
+	  }
 int led_twk(){
 	  int i;
 	  led_on_asm();
