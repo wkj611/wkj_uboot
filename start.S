@@ -47,8 +47,10 @@ reset:
         bl disable_mmu
         bl init_clock
         bl mem_init
-        bl copy_from_sram
         bl init_stack
+        
+        bl nand_init
+        bl copy_from_nand
         bl clean_bss
         ldr pc,=wboot_main
         @bl led_on
@@ -132,18 +134,28 @@ init_clock:
         orr r1,r1,#0x7
         str r1,[r0]
         mov pc,lr
-#define START_ADDR 0x0c000000
-#define END_ADDR 0x50008000
 
-copy_from_sram:
-        ldr r0,=START_ADDR
-        ldr r1,=END_ADDR
-        add r3,r0,#4096
-copy_loop:
-        ldr r2,[r0],#4
-        str r2,[r1],#4
-        cmp r3,r0
-        bne copy_loop
+copy_from_nand:
+        ldr r0,=_start
+        mov r1,#0
+        ldr r2,=bss_end
+        sub r2,r2,r0
+        
+        mov ip,lr
+        bl nand_to_ram
+        
+        ldr r0,=_start
+        ldr r1,=0x0c000000
+        mov r9,#0x1000
+check_copy:
+        ldr r3,[r0],#4
+        ldr r4,[r1],#4
+        teq r3,r4
+        bne led_on
+        subs r9,r9,#4
+        bne check_copy
+           
+        mov lr,ip
         mov pc,lr
 init_stack:
         msr cpsr_c, #0xd2

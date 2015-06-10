@@ -1,4 +1,4 @@
-obj = start.o mem.o main.o mmu.o led.o button.o interrupt.o
+obj = start.o mem.o main.o mmu.o led.o button.o interrupt.o nand.o
 all:$(obj)
 	arm-linux-ld -Twboot.lds -o wboot.elf $^
 	arm-linux-objcopy -O binary wboot.elf wboot.bin
