@@ -1,5 +1,6 @@
 .text
 .globl mem_init
+#define MEM_SYS_CFG 0x7e00f120
 #define P1MEMCCMD 0x7e001004
 #define P1DIRECTCMD 0x7e001008
 #define P1MEMSTAT 0x7e001000
@@ -33,8 +34,8 @@
 #define TRP_VAL2 ((23*133000000/1000-1)/1000000+1)-3
 #define TRP_VAL (TRCD_VAL2<<3)|(TRCD_VAL1<<0)
 mem_init:
-        ldr r0,=0x7e00f120
-        ldr r1,=0x0
+        ldr r0,=MEM_SYS_CFG
+        ldr r1,=0xd
         str r1,[r0]
         ldr r0,=P1MEMCCMD
         ldr r1,=0x4

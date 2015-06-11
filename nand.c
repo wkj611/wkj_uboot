@@ -5,9 +5,9 @@
 #define NFADDR (volatile unsigned long*)0x7020000C
 #define NFSTAT (volatile unsigned long*)0x70200028
 
-#define TACLS  7
-#define TWRPH0 7
-#define TWRPH1 7
+#define TACLS  1
+#define TWRPH0 3
+#define TWRPH1 1
 int chip_select();
 int chip_disselect();
 int nand_init();
@@ -78,7 +78,7 @@ int nand_page_read(char *buff,unsigned long addr){
 /*start:nandFlash的页地址
 /*size :copy内容的大小
 */
-int nand_to_ram(unsigned char *dest,unsigned char start,int size){
+int nand_to_ram(char *dest,unsigned char start,int size){
     int i;
     for(i=0;i<4;i++){
         nand_page_read(dest,i);	
